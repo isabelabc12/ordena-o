@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+   <!--
+      HENRYQUE CARVALHO           N°:14      3°A
+      ISABELA BATISTA             N°:17      3°A
+      DANIEL CARVALHO             N°:5       3°A
+      --!> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Inserção e Ordenação</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px;
+        }
+        .container {
+            margin-bottom: 20px;
+        }
+        label, button {
+            display: block;
+            margin-top: 10px;
+        }
+        .output {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Inserir e Ordenar Números</h2>
+        <input type="number" id="numero" placeholder="Insira um número inteiro">
+        <button onclick="inserirNumero()">Inserir</button>
+        <button onclick="ordenarNumeros()">Ordenar</button>
+    </div>
+    <div class="output">
+        <label id="listaOriginal">Lista Original: </label>
+        <label id="listaOrdenada">Lista Ordenada: </label>
+    </div>
+
+    <script>
+        // Vetor para armazenar os números
+        let numeros = [];
+
+        // Função para inserir números no vetor
+        function inserirNumero() {
+            let input = document.getElementById("numero").value;
+            if (input !== "") {
+                let numero = parseInt(input);
+                numeros.push(numero);
+                document.getElementById("listaOriginal").textContent = "Lista Original: " + numeros.join(", ");
+                document.getElementById("numero").value = ""; // Limpa o campo de entrada
+            } else {
+                alert("Por favor, insira um número.");
+            }
+        }
+
+        // Função para ordenar os números usando o método de ordenação Bolha (Bubble Sort)
+        function ordenarNumeros() {
+            let array = [...numeros]; // Cria uma cópia do vetor original
+            let n = array.length;
+
+            for (let i = 0; i < n - 1; i++) {
+                for (let j = 0; j < n - 1 - i; j++) {
+                    if (array[j] > array[j + 1]) {
+                        // Troca os elementos
+                        let temp = array[j];
+                        array[j] = array[j + 1];
+                        array[j + 1] = temp;
+                    }
+                }
+            }
+            document.getElementById("listaOrdenada").textContent = "Lista Ordenada: " + array.join(", ");
+        }
+    </script>
+</body>
+</html>
